@@ -6,17 +6,12 @@ the therapy box react js front end serving to firebase
 
 ## Getting started
 
-1. Type "cd app && yarn install"
+1. Click the Gitpod badge above to open your cloud IDE
 
-2. Type "yarn start"
+2. Create a new feature branch and start developing!
 
-3. Create a .gitpod.yml based on example.gitpod.yml (Copy and Paste)
+3. Before you submit your branch run the command ```yarn build```
 
-4. Click File -> "Stop Workspace"
+4. Finally push your branch upstream
 
-5. Click Workspaces in Popup Screen
-
-6. Wait for it to reinitialize, then hit the start button.
-
-7. Click on "open in browser" to view yourself, or "make public" to share with others.
-
+2. That's it! Have fun!

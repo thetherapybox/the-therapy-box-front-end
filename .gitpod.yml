@@ -1,4 +1,4 @@
 tasks:
-  - init: cd app && npm install && npm build
-    command: cd app && npm run start
-image: gitpod/workspace-full
+  - before: cd app
+    init: yarn install
+    command: yarn start
