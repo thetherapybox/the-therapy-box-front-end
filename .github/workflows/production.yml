@@ -3,7 +3,7 @@ name: deploy_to_firebase_hosting_production
 on:
   push:
     branches:
-    - master
+    - production
 
 jobs:
   deploy_to_firebase_hosting:
