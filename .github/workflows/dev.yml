@@ -1,7 +1,7 @@
 name: deploy_to_firebase_hosting_dev
 
 on:
-  pull_request:
+  push:
     branches:
     - dev-work-reviewed
 
