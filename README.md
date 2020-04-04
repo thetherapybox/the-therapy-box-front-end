@@ -7,7 +7,8 @@ the therapy box react js front end serving to firebase
 ## Getting started
 
 1. Click the Gitpod badge above to open your cloud IDE
--   refresh the preview once the terminal is ready to serve your app
+
+    -   refresh the preview once the terminal has completed all tasks
 
 2. Create a new feature branch and start developing!
 
