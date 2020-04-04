@@ -1,0 +1,4 @@
+tasks:
+  - before: cd app
+    init: yarn install
+    command: yarn start
