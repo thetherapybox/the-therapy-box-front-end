@@ -1,7 +1,7 @@
 {
   "hosting": {
     "predeploy": [
-      "cd app && yarn build"
+      "cd app && yarn install && yarn build"
     ],
     "public": "app/build",
     "ignore": [
