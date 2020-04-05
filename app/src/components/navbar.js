@@ -1,0 +1,46 @@
+import React from "react"
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {AppBar, Grid, Toolbar, Typography} from "@material-ui/core"
+import TherapyBox from "../static/images/TherapyBox.png"
+
+import {Link} from "react-router-dom"
+
+export default function Navbar() {
+
+    const styles = {
+        navbarLink: {
+            fontSize: '1.2em'
+        }
+    }
+    return (
+        <Grid container 
+            position={'static'} 
+            justify={'space-between'}  
+            alignItems={'center'}>
+        
+            <Grid item style={{padding: '20px'}}>
+                <img src={TherapyBox} />
+            </Grid>
+            
+            <Grid item xs={12} md={4}>
+                <Grid container 
+                    position={'static'}
+                    justify={'space-around'}
+                    alignItems={'center'}>
+                    <Grid item>
+                        <Link to="/products" >
+                            <Typography  style={styles.navbarLink}>
+                                Products
+                            </Typography>
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link to="/shoppingcart">
+                            <ShoppingCartIcon />
+                        </Link>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    )
+}

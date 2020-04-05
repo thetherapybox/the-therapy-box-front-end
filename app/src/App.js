@@ -1,19 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import {useSelector} from "react-redux"
 import Login from "./components/login"
+import PageLayout from "./layouts/page"
+
+import {Container} from "@material-ui/core"
 
 function App() {
 
+    const user = useSelector(state => state.user)
+    const hasUserToken = user.token !== undefined;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Login />
-      </header>
+        {hasUserToken ? (<Login />) : (<PageLayout />)}
     </div>
-  );
+  )
 }
 
 export default App;
