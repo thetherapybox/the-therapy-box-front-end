@@ -18,8 +18,8 @@ export default function Login(){
     const [password, setPassword] = React.useState('')
     const [authenticationError, setAuthenticationError] = React.useState('')
 
-    const showError = authenticationError != ''
-    const userAuthenticated = user.token != undefined
+    const showError = authenticationError !== ''
+    const userAuthenticated = user.token !== undefined
 
     return (
         <div>
