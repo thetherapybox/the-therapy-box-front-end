@@ -31,7 +31,6 @@ export default function Login(){
     useEffect(() => {
         const cookie = getCookie('token')
         if(cookie){
-            console.log(cookie)
             dispatch(setUserTokenAction(cookie))
         }
     }, [])
