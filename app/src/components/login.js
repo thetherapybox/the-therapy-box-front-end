@@ -13,7 +13,7 @@ import logo from "../logo.svg"
 const getCookie = (name) => {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        if (parts.length === 2) return parts.pop().split(";").shift();
     }
 
 export default function Login(){
@@ -35,7 +35,7 @@ export default function Login(){
         if(cookie){
             dispatch(setUserTokenAction(cookie))
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
