@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {TextField, Button} from "@material-ui/core"
 import {Alert} from "@material-ui/lab"
 import Strapi from "../strapi"
@@ -8,6 +8,13 @@ import setUserTokenAction from "../actions/user"
 import {useSelector, useDispatch} from "react-redux"
 
 import logo from "../logo.svg"
+
+
+const getCookie = (name) => {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
 
 export default function Login(){
 
@@ -22,6 +29,13 @@ export default function Login(){
 
     const showError = authenticationError !== ''
     const userAuthenticated = user.token !== undefined
+
+    useEffect(() => {
+        const cookie = getCookie('token')
+        if(cookie){
+            dispatch(setUserTokenAction(cookie))
+        }
+    }, [])
 
     return (
         <div>
@@ -55,16 +69,18 @@ export default function Login(){
                     style={{margin: '30px'}}
                     onClick={ev => {
                         Strapi.login(email, password).then(res => {
-                            dispatch(setUserTokenAction(undefined))
-                            if(res.statusCode===400) 
-                                setAuthenticationError('Invalid Username and/or Password')
-                            else if(res.jwt === undefined)
-                                setAuthenticationError('Invalid Token Received.  Please Reload.')
-                            else {
-                                setAuthenticationError('')
-                                dispatch(setUserTokenAction(res.jwt))
-                            }
-                        })
+                        dispatch(setUserTokenAction(undefined))
+                        if(res.statusCode===400) 
+                            setAuthenticationError('Invalid Username and/or Password')
+                        else if(res.jwt === undefined)
+                            setAuthenticationError('Invalid Token Received.  Please Reload.')
+                        else {
+                            setAuthenticationError('')
+                            
+                            document.cookie = `token=${res.jwt}`
+                            dispatch(setUserTokenAction(res.jwt))
+                        }
+                    })
                     }}
                 >Login
                 </Button>
