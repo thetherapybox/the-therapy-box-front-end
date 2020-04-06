@@ -1,6 +1,6 @@
 import React from "react"
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {AppBar, Grid, Toolbar, Typography} from "@material-ui/core"
+import {Grid, Typography} from "@material-ui/core"
 import TherapyBox from "../static/images/TherapyBox.png"
 
 import {Link} from "react-router-dom"
@@ -19,7 +19,7 @@ export default function Navbar() {
             alignItems={'center'}>
         
             <Grid item style={{padding: '20px'}}>
-                <img src={TherapyBox} />
+                <img src={TherapyBox} alt={"The Therapy Box Activity Boxes for Care Homes"} />
             </Grid>
             
             <Grid item xs={12} md={6}>

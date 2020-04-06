@@ -1,5 +1,5 @@
 import React from "react"
-import {Breadcrumbs, Grid, TextField, Typography} from "@material-ui/core"
+import {Grid, TextField} from "@material-ui/core"
 
 import Breadcrumb from "../components/breadcrumb"
 export default function ProductDetail() {
