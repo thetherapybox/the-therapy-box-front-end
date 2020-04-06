@@ -22,11 +22,25 @@ export default function Navbar() {
                 <img src={TherapyBox} />
             </Grid>
             
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={6}>
                 <Grid container 
                     position={'static'}
                     justify={'space-around'}
                     alignItems={'center'}>
+                    <Grid item>
+                        <Link to="/link">
+                            <Typography style={styles.navbarLink}>
+                                Example Link
+                            </Typography>
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link to="/aboutus" >
+                            <Typography style={styles.navbarLink}>
+                                About Us
+                            </Typography>
+                        </Link>
+                    </Grid>
                     <Grid item>
                         <Link to="/products" >
                             <Typography  style={styles.navbarLink}>

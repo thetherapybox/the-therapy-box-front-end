@@ -9,6 +9,7 @@ import {BrowserRouter as Router,
         } from "react-router-dom"
 
 import Navbar from "../components/navbar"
+import ProductDetail from "./productDetail"
 
 
 export default function PageLayout() {
@@ -16,11 +17,17 @@ export default function PageLayout() {
                 <Container maxWidth="lg">
                     <Navbar />
                     <Switch>
+                        <Route path="/link">
+                            <div>Example Page Text</div>
+                        </Route>
+                        <Route path="/aboutus">
+                            <div>Forged in the fires of Mount Doom over 5,000 years ago, our activity boxes both entertain and ward off Sauron</div>
+                        </Route>
                         <Route path="/products">
-                            <div style={{marginTop: '200px'}}>Wow look at all these products</div>
+                            <ProductDetail />
                         </Route>
                         <Route path="/shoppingcart">
-                            <div style={{marginTop: '200px'}}>Get ready to check out!</div>
+                            <div>Get ready to check out!</div>
                         </Route>
                     </Switch>
                 </Container>
