@@ -7,11 +7,13 @@ import setUserTokenAction from "../actions/user"
 
 import {useSelector, useDispatch} from "react-redux"
 
+import logo from "../logo.svg"
+
 
 const getCookie = (name) => {
         var value = "; " + document.cookie;
         var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        if (parts.length === 2) return parts.pop().split(";").shift();
     }
 
 export default function Login(){
@@ -33,38 +35,40 @@ export default function Login(){
         if(cookie){
             dispatch(setUserTokenAction(cookie))
         }
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
-            <p>Test Login for The Therapy Box</p>
-            {userAuthenticated ? <Alert severity="success" style={{margin: '20px'}}>Successfully Authenticated</Alert> : ""}
-            {showError ? <Alert severity="error" style={{margin: '20px'}}>{authenticationError}</Alert> : ""}
-            <TextField
-                variant={"filled"}
-                label={"Email"}
-                color="primary"
-                InputLabelProps={textFieldStyle}
-                InputProps={textFieldStyle}
-                value={email}
-                onChange={ev => setEmail(ev.target.value)}
-            />
+            <header className="App-header">
+                <img src={logo} className="App-logo" alt="logo" />
+                <p>Test Login for The Therapy Box</p>
+                {userAuthenticated ? <Alert severity="success" style={{margin: '20px'}}>Login Successful</Alert> : ""}
+                {showError ? <Alert severity="error" style={{margin: '20px'}}>{authenticationError}</Alert> : ""}
+                <TextField
+                    variant={"filled"}
+                    label={"Email"}
+                    color="primary"
+                    InputLabelProps={textFieldStyle}
+                    InputProps={textFieldStyle}
+                    value={email}
+                    onChange={ev => setEmail(ev.target.value)}
+                />
 
-            <TextField 
-                variant={"filled"}
-                label={"Password"} 
-                type={"password"} 
-                InputLabelProps={textFieldStyle}
-                InputProps={textFieldStyle}
-                value={password}
-                onChange={ev => setPassword(ev.target.value)}
-            /><br />
-            <Button
-                variant={'contained'}
-                color={'primary'}
-                style={{margin: '30px'}}
-                onClick={ev => {
-                    Strapi.login(email, password).then(res => {
+                <TextField 
+                    variant={"filled"}
+                    label={"Password"} 
+                    type={"password"} 
+                    InputLabelProps={textFieldStyle}
+                    InputProps={textFieldStyle}
+                    value={password}
+                    onChange={ev => setPassword(ev.target.value)}
+                /><br />
+                <Button
+                    variant={'contained'}
+                    color={'primary'}
+                    style={{margin: '30px'}}
+                    onClick={ev => {
+                        Strapi.login(email, password).then(res => {
                         dispatch(setUserTokenAction(undefined))
                         if(res.statusCode===400) 
                             setAuthenticationError('Invalid Username and/or Password')
@@ -77,9 +81,10 @@ export default function Login(){
                             dispatch(setUserTokenAction(res.jwt))
                         }
                     })
-                }}
-            >Login
-            </Button>
+                    }}
+                >Login
+                </Button>
+            </header>
         </div>
     )
 }
