@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="App">
-        {!hasUserToken ? (<Login />) : (<PageLayout />)}
+        {hasUserToken ? <PageLayout /> : <Login />}
     </div>
   )
 }
