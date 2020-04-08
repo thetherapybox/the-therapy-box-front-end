@@ -1,7 +1,13 @@
 import React from "react"
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {Grid, Typography} from "@material-ui/core"
+import {ShoppingCart, ExitToApp} from '@material-ui/icons';
+import {Button, Grid, Typography} from "@material-ui/core"
 import TherapyBox from "../static/images/TherapyBox.png"
+
+import {useDispatch, useSelector} from "react-redux"
+
+import setUserTokenAction from "../actions/user"
+
+import {dropCookie} from "./login"
 
 import {Link} from "react-router-dom"
 
@@ -12,6 +18,10 @@ export default function Navbar() {
             fontSize: '1.2em'
         }
     }
+
+    const dispatch = useDispatch()
+    const user = useSelector(state => state.user)
+
     return (
         <Grid container 
             position={'static'} 
@@ -50,8 +60,16 @@ export default function Navbar() {
                     </Grid>
                     <Grid item>
                         <Link to="/shoppingcart">
-                            <ShoppingCartIcon />
+                            <ShoppingCart />
                         </Link>
+                    </Grid>
+                    <Grid item>
+                        <Button
+                            onClick={ev => {
+                                dropCookie('token')
+                                dispatch(setUserTokenAction(undefined))}
+                            }
+                        ><ExitToApp /></Button>
                     </Grid>
                 </Grid>
             </Grid>

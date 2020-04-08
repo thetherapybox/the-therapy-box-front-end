@@ -16,9 +16,6 @@ export default function PageLayout() {
                 <Container maxWidth="lg">
                     <Navbar />
                     <Switch>
-                        <Route path="/link">
-                            <div>Example Page Text</div>
-                        </Route>
                         <Route path="/aboutus">
                             <div>Forged in the fires of Mount Doom over 5,000 years ago, our activity boxes both entertain and ward off Sauron</div>
                         </Route>
