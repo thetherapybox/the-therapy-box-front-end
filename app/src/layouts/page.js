@@ -36,6 +36,7 @@ export default function PageLayout() {
                         </Route>
                         <Route exact path="/">
                             <Navbar /> 
+                            <div>There's no place like Home page.</div>
                         </Route>
                     </Switch>
                 </Container>
