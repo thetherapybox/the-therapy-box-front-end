@@ -5,21 +5,12 @@ import Strapi from "../strapi"
 
 import setUserTokenAction from "../actions/user"
 import {ToggleAction} from "../actions/login"
+import {getCookie} from "./cookie"
 
 import {useSelector, useDispatch} from "react-redux"
+import {useHistory} from "react-router-dom"
 
 import logo from "../logo.png"
-
-
-const getCookie = (name) => {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length === 2) return parts.pop().split(";").shift();
-    }
-
-export const dropCookie = (name) => {
-    document.cookie = `${name}= ; expires = Thu, 01 Jan 1970 00:00:00 GMT`
-}
 
 export default function Login(){
 
@@ -47,13 +38,7 @@ export default function Login(){
     const userAuthenticated = user.token !== undefined
 
     const isAtLogin = login === 'login'
-
-    useEffect(() => {
-        const cookie = getCookie('token')
-        if(cookie){
-            dispatch(setUserTokenAction(cookie))
-        }
-    }, [dispatch])
+    const history = useHistory()
 
     return (
         <div>
@@ -112,6 +97,7 @@ export default function Login(){
                                                 setAuthenticationError('')
                                                 document.cookie = `token=${res.jwt}`
                                                 dispatch(setUserTokenAction(res.jwt))
+                                                history.push('/')
                                             }
                                         })
                                     } else {
@@ -132,6 +118,7 @@ export default function Login(){
                                                             setAuthenticationError('')
                                                             document.cookie = `token=${r.jwt}`
                                                             dispatch(setUserTokenAction(r.jwt))
+                                                            history.push('/')
                                                         }
                                                     })
                                                 }
@@ -156,7 +143,7 @@ export default function Login(){
                     variant={'contained'}
                     onClick={ev => {
                                 setAuthenticationError('')
-                                dispatch(ToggleAction()) 
+                                dispatch(ToggleAction())
                             }}
                 >{isAtLogin ? "Create Your Therapy Box Account" : "Switch to Login"}
                 </Button>
