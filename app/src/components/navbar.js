@@ -3,7 +3,7 @@ import {ShoppingCart, ExitToApp} from '@material-ui/icons';
 import {Button, Grid, Typography} from "@material-ui/core"
 import TherapyBox from "../static/images/TherapyBox.png"
 
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 
 import setUserTokenAction from "../actions/user"
 
@@ -20,7 +20,6 @@ export default function Navbar() {
     }
 
     const dispatch = useDispatch()
-    const user = useSelector(state => state.user)
 
     return (
         <Grid container 
