@@ -61,6 +61,7 @@ export default function Navbar() {
                     <Grid item>
                         {userHasToken ? (
                             <Link
+                                style={styles.navbarLinkContainer}
                                 onClick={ev => {
                                     dropCookie('token')
                                     dispatch(setUserTokenAction(undefined))}
@@ -111,6 +112,7 @@ export default function Navbar() {
             
                         {userHasToken ? (
                             <Link
+                                styles={styles.navbarLinkContainer}
                                 onClick={ev => {
                                     dropCookie('token')
                                     dispatch(setUserTokenAction(undefined))}
@@ -129,7 +131,7 @@ export default function Navbar() {
                         )}
                  
                         
-                            <Link to="/shoppingcart">
+                            <Link to="/shoppingcart" style={styles.navbarLinkContainer}>
                                 <Typography style={styles.navbarLink}>
                                     Shopping Cart
                                 </Typography>
