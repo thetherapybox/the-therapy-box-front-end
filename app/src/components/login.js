@@ -1,11 +1,10 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {TextField, Button, Grid} from "@material-ui/core"
 import {Alert} from "@material-ui/lab"
 import Strapi from "../strapi"
 
 import setUserTokenAction from "../actions/user"
 import {ToggleAction} from "../actions/login"
-import {getCookie} from "./cookie"
 
 import {useSelector, useDispatch} from "react-redux"
 import {useHistory} from "react-router-dom"
