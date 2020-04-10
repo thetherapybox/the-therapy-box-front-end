@@ -9,21 +9,34 @@ import {BrowserRouter as Router,
 
 import Navbar from "../components/navbar"
 import ProductDetail from "./productDetail"
-
+import Login from "../components/login"
 
 export default function PageLayout() {
     return (<Router>
                 <Container maxWidth="lg">
-                    <Navbar />
                     <Switch>
-                        <Route path="/aboutus">
-                            <div>Forged in the fires of Mount Doom over 5,000 years ago, our activity boxes both entertain and ward off Sauron</div>
-                        </Route>
-                        <Route path="/products">
+                        <Route exact path="/activities">
+                            <Navbar />
                             <ProductDetail />
                         </Route>
-                        <Route path="/shoppingcart">
+                        <Route exact path="/aboutus">
+                            <Navbar />
+                            <div>Forged in the fires of Mount Doom over 5,000 years ago, our activity boxes both entertain and ward off Sauron</div>
+                        </Route>
+                        <Route exact path="/contact">
+                            <Navbar />
+                            <div>Contact us!</div>
+                        </Route>
+                        <Route exact path="/shoppingcart">
+                            <Navbar />
                             <div>Get ready to check out!</div>
+                        </Route>
+                        <Route exact path="/signin">
+                            <Login />
+                        </Route>
+                        <Route exact path="/">
+                            <Navbar /> 
+                            <div>There's no place like Home page.</div>
                         </Route>
                     </Switch>
                 </Container>
