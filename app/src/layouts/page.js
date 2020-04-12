@@ -8,7 +8,12 @@ import {BrowserRouter as Router,
         } from "react-router-dom"
 
 import Navbar from "../components/navbar"
-import ProductDetail from "./productDetail"
+import HomePage from "./homePage"
+import ActivityLibrary from "./activityLibrary"
+import AboutUs from "./aboutUs"
+import ContactUs from "./contactUs"
+import ShoppingCart from "./shoppingCart"
+
 import Login from "../components/login"
 
 export default function PageLayout() {
@@ -17,26 +22,26 @@ export default function PageLayout() {
                     <Switch>
                         <Route exact path="/activities">
                             <Navbar />
-                            <ProductDetail />
+                            <ActivityLibrary />
                         </Route>
                         <Route exact path="/aboutus">
                             <Navbar />
-                            <div>Forged in the fires of Mount Doom over 5,000 years ago, our activity boxes both entertain and ward off Sauron</div>
+                            <AboutUs />
                         </Route>
                         <Route exact path="/contact">
                             <Navbar />
-                            <div>Contact us!</div>
+                            <ContactUs />
                         </Route>
                         <Route exact path="/shoppingcart">
                             <Navbar />
-                            <div>Get ready to check out!</div>
+                            <ShoppingCart />
                         </Route>
                         <Route exact path="/signin">
                             <Login />
                         </Route>
                         <Route exact path="/">
                             <Navbar /> 
-                            <div>There's no place like Home page.</div>
+                            <HomePage />
                         </Route>
                     </Switch>
                 </Container>
