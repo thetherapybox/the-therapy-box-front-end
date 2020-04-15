@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {ShoppingCart, ArrowDropDown} from '@material-ui/icons';
-import {ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Grid, Typography, } from "@material-ui/core"
+import {Container, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails, Grid, Typography, } from "@material-ui/core"
 import TherapyBox from "../static/images/TherapyBox.png"
 
 import {useDispatch, useSelector} from "react-redux"
@@ -32,7 +32,8 @@ export default function Navbar() {
 
     const dispatch = useDispatch()
 
-    const navBarSubComponent = <Grid item xs={12} sm={8} md={6}>
+    const navBarSubComponent = 
+            <Grid item xs={12} sm={8} md={6}>
                 <Grid container 
                     position={'static'}
                     justify={'space-around'}
@@ -146,39 +147,41 @@ export default function Navbar() {
     }, [])
 
     return (
-        <Grid container 
-            position={'static'} 
-            justify={'space-between'}  
-            alignItems={'center'}
-            direction={windowSize < 960 ? "column" : "row"}>
+        <Container>
+            <Grid container 
+                position={'static'} 
+                justify={'space-between'}  
+                alignItems={'center'}
+                direction={windowSize < 960 ? "column" : "row"}>
+                
             
-        
-            <Grid item style={{padding: '20px'}}>
-                <Link to='/'>
-                    <img src={TherapyBox} alt={"The Therapy Box Activity Boxes for Care Homes"} />
-                </Link>
+                <Grid item style={{padding: '20px'}}>
+                    <Link to='/'>
+                        <img src={TherapyBox} alt={"The Therapy Box Activity Boxes for Care Homes"} />
+                    </Link>
+                </Grid>
+                        {windowSize < 960 ? (
+                            <ExpansionPanel style={{width: '100%', marginBottom: '20px'}}>
+                                <ExpansionPanelSummary>
+                                    <Grid container justify={'space-between'}>
+                                        <Grid item>
+                                            <Typography style={styles.navbarLink}>
+                                                Navigate
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <ArrowDropDown/>
+                                        </Grid>
+                                    </Grid>
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    {navBarSubComponentCollapsed}
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
+                        ) : (
+                            navBarSubComponent
+                        )}
             </Grid>
-                    {windowSize < 960 ? (
-                        <ExpansionPanel style={{width: '100%', marginBottom: '20px'}}>
-                            <ExpansionPanelSummary>
-                                <Grid container justify={'space-between'}>
-                                    <Grid item>
-                                        <Typography style={styles.navbarLink}>
-                                            Navigate
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <ArrowDropDown/>
-                                    </Grid>
-                                </Grid>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                {navBarSubComponentCollapsed}
-                            </ExpansionPanelDetails>
-                        </ExpansionPanel>
-                    ) : (
-                        navBarSubComponent
-                    )}
-        </Grid>
+        </Container>
     )
 }
