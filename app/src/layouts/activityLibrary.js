@@ -155,6 +155,7 @@ export default function ActivityLibrary() {
                                                     <Button
                                                         style={{color: "#C80ACA", border: "#C80ACA solid 1px", textTransform: "none"}}
                                                         variant={'outlined'}
+                                                        onClick={ev => window.location.href = `/activities/${activity.activityBoxID}`}
                                                     >Explore</Button>
                                                 </Grid>
                                             </Grid>
