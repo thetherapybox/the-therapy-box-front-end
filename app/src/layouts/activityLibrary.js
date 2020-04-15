@@ -44,7 +44,8 @@ export default function ActivityLibrary() {
         },
         backDrop: {
             background: "#F2F2F2",
-            padding: '30px'
+            padding: '30px',
+            minHeight: '850px',
         },
         activityBoxID: {
             fontFamily: "Arimo",
