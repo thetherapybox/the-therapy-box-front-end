@@ -32,7 +32,7 @@ const EXAMPLE_DATA = [
         },
         {
             img: "http://placekitten.com/g/500/300",
-            activityBoxID: 2,
+            activityBoxID: 3,
             title: "A Dance Of Kittens",
             subTitle: "A Very Unique Cativity Box",
             tags: [
@@ -42,7 +42,7 @@ const EXAMPLE_DATA = [
         },
         {
             img: "http://placekitten.com/g/500/300",
-            activityBoxID: 2,
+            activityBoxID: 4,
             title: "Game of Kittens",
             subTitle: "A Very Unique Cativity Box",
             tags: [
@@ -52,7 +52,7 @@ const EXAMPLE_DATA = [
         },
         {
             img: "http://placekitten.com/g/328/194",
-            activityBoxID: 2,
+            activityBoxID: 5,
             title: "The Winds of Kittens",
             subTitle: "A Very Unique Cativity Box",
             tags: [
@@ -62,7 +62,7 @@ const EXAMPLE_DATA = [
         },
         {
             img: "http://placekitten.com/g/656/388",
-            activityBoxID: 2,
+            activityBoxID: 6,
             title: "Kittens & Dragons",
             subTitle: "A Very Unique Cativity Box",
             tags: [
@@ -72,7 +72,7 @@ const EXAMPLE_DATA = [
         },
         {
             img: "http://placekitten.com/g/656/388",
-            activityBoxID: 2,
+            activityBoxID: 7,
             title: "Kittens Unlimited",
             subTitle: "A Very Unique Cativity Box",
             tags: [
