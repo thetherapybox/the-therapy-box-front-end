@@ -1,5 +1,7 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import {Button, Card, CardContent, CardMedia, Container, Grid, TextField, Typography} from "@material-ui/core"
+import {Pagination} from "@material-ui/lab"
+
 import InputAdornment from '@material-ui/core/InputAdornment'
 import SearchIcon from '@material-ui/icons/Search'
 
@@ -27,13 +29,66 @@ const EXAMPLE_DATA = [
                 "meow",
                 "cat"
             ]
+        },
+        {
+            img: "http://placekitten.com/g/500/300",
+            activityBoxID: 2,
+            title: "A Dance Of Kittens",
+            subTitle: "A Very Unique Cativity Box",
+            tags: [
+                "purr",
+                "meow"
+            ]
+        },
+        {
+            img: "http://placekitten.com/g/500/300",
+            activityBoxID: 2,
+            title: "Game of Kittens",
+            subTitle: "A Very Unique Cativity Box",
+            tags: [
+                "purr",
+                "meow"
+            ]
+        },
+        {
+            img: "http://placekitten.com/g/328/194",
+            activityBoxID: 2,
+            title: "The Winds of Kittens",
+            subTitle: "A Very Unique Cativity Box",
+            tags: [
+                "purr",
+                "meow"
+            ]
+        },
+        {
+            img: "http://placekitten.com/g/656/388",
+            activityBoxID: 2,
+            title: "Kittens & Dragons",
+            subTitle: "A Very Unique Cativity Box",
+            tags: [
+                "purr",
+                "meow"
+            ]
+        },
+        {
+            img: "http://placekitten.com/g/656/388",
+            activityBoxID: 2,
+            title: "Kittens Unlimited",
+            subTitle: "A Very Unique Cativity Box",
+            tags: [
+                "purr",
+                "meow"
+            ]
         }
     ]
 
 
 export default function ActivityLibrary() {
 
+    const [products, setProducts] = useState(undefined)
     const [searchFilter, setSearchFilter] = useState('')
+    const [numOfPages, setNumOfPages] = useState(Math.ceil(EXAMPLE_DATA.length / 6))
+    const [page, setPage] = useState(1)
 
     const styles = {
         pageTitle: {
@@ -68,15 +123,21 @@ export default function ActivityLibrary() {
         }
     }
 
-    /* 
-        Design:
-        https://www.figma.com/proto/IQSLstsDcsIhljMamKyJnJ/TherapyBox?node-id=970%3A903&scaling=min-zoom
-        
-        1. Build the layout using EXAMPLE_DATA.map() to build the repeatable components.
-        2. Use Card and Typography components stylized to build the individual
-        component that will repeat.
-    */
+    useEffect(() => {
+        // This is where the fetch to the Strapi API will go, until then, dummy data!
+        setProducts(EXAMPLE_DATA)
+    }, [])
 
+    const filteredProducts = products && products.filter(activity => activity.title.toLowerCase().includes(searchFilter.toLowerCase())
+                    || activity.subTitle.toLowerCase().includes(searchFilter.toLowerCase()))
+
+    useEffect(() => {
+        if(filteredProducts) setNumOfPages(Math.ceil(filteredProducts.length/6))
+    }, [filteredProducts])
+
+    useEffect(() => {
+        if(page > numOfPages) setPage(Math.max(1,numOfPages))
+    }, [numOfPages, page])
 
     return (
         <>
@@ -109,10 +170,9 @@ export default function ActivityLibrary() {
             </Container>
             <div style={styles.backDrop}>
                 <Container>
-                    <Grid container spacing={10}>
-                        {EXAMPLE_DATA
-                        .filter(activity => activity.title.toLowerCase().includes(searchFilter.toLowerCase()) 
-                        || activity.subTitle.toLowerCase().includes(searchFilter.toLowerCase()))
+                    <Grid container spacing={10} style={{height: '1000px'}}>
+                        {filteredProducts ? (filteredProducts
+                        .slice(6*(page-1), 6*page)
                         .map(activity => {
                             return(
                                 <Grid item
@@ -122,7 +182,7 @@ export default function ActivityLibrary() {
                                 >
                                     <Card style={{padding: '0px !important', margin: '0px'}}>
                                         <CardMedia>
-                                            <img src={activity.img} style={{objectFit: 'cover', width: '100%'}}/>
+                                            <img src={activity.img} alt={activity.title} style={{objectFit: 'cover', width: '100%'}}/>
                                         </CardMedia>
                                         <CardContent>
                                             <Typography align={'left'} style={styles.activityBoxID}>
@@ -164,8 +224,19 @@ export default function ActivityLibrary() {
                                     </Card>
                                 </Grid>
                             )
-                        })}
+                        })):("Loading...")}
                     </Grid>
+                    <Grid container justify={'flex-end'}>
+                        <Pagination 
+                            page={page}
+                            align={'right'}
+                            count={numOfPages}
+                            boundaryCount={5}
+                            style={{marginTop: '70px'}}
+                            onChange={(ev, page) => setPage(page)}
+                        />
+                    </Grid>
+                    
                 </Container>
             </div>
         </>
