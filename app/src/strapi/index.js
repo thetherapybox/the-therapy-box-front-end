@@ -23,6 +23,24 @@ class StrapiIntegration {
       return data
   }
 
+  async register(email, password) {
+      const body = {
+          username: email,
+          email: email,
+          password: password
+      }
+
+      const data = await fetch(`${this.API_ENDPOINT}/auth/local/register`, {
+          headers: {
+              "Content-Type": "application/json"
+          },
+          method: 'POST',
+          body: JSON.stringify(body)
+      }).then(res => res)
+      return data
+
+  }
+
   async add(model, newModel) {
     const data = await fetch(`${this.API_ENDPOINT}/${model}`, 
       {
