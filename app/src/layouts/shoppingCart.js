@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 
-const EXAMPLE_DATA = [
+/*const EXAMPLE_DATA = [
     {
         id: 1,
         photo: "http://placekitten.com/g/280/169",
@@ -22,7 +22,7 @@ const EXAMPLE_DATA = [
         quantity: 1,
         price: 15
     }
-]
+]*/
 
 export default function ShoppingCart() {
     /*
