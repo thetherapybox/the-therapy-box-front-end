@@ -75,7 +75,7 @@ export default function ShoppingCart() {
                 <TableBody>
                   <TableRow>
                     <TableCell align="left">
-                      <img src="http://placekitten.com/g/328/194" style={{"width":"100%"}} />
+                      <img alt="item-image" src="http://placekitten.com/g/328/194" style={{"width":"100%"}} />
                     </TableCell>
                     <TableCell align="left" style={{ verticalAlign: 'top' }}>
                       <Typography variant={"subtitle1"}>
