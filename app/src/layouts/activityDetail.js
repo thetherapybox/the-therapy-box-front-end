@@ -7,7 +7,6 @@ import DateFnsUtils from '@date-io/date-fns';
 
 import {useParams} from "react-router-dom"
 
-import Breadcrumb from "../components/activityDetail/breadcrumb"
 import InputAdornment from '@material-ui/core/InputAdornment'
 import SearchIcon from '@material-ui/icons/Search'
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -133,11 +132,11 @@ export default function ProductDetail() {
     </div>
     <div style={styles.backDrop}>
         <Container>
-            <Grid container justify={'flex-start'}>
+            <Grid container justify={'center'}>
                   <Grid item style={styles.grids}>
-                        <img src={EXAMPLE_DATA.photos[0]} /> <br />
+                        <img src={EXAMPLE_DATA.photos[0]} alt={EXAMPLE_DATA.title} /> <br />
                         <Grid container justify={'space-between'} style={{marginTop: '20px'}}>
-                                {EXAMPLE_DATA.photos.slice(1).map((photo, photoID) => <Grid item><img src={photo} /></Grid>)}
+                                {EXAMPLE_DATA.photos.slice(1).map((photo, photoID) => <Grid item><img src={photo} alt={EXAMPLE_DATA.title} /></Grid>)}
                         </Grid>
                   </Grid>
                   <Grid item style={styles.grids}>
@@ -153,7 +152,7 @@ export default function ProductDetail() {
                                 <div style={styles.duration}>Duration: {EXAMPLE_DATA.durationString}</div>
                             </Grid>
                         </Grid>
-                        <div align="left" style={{...styles.duration, marginTop: '25px'}}>
+                        <div align="left" style={{...styles.duration, marginTop: '25px', marginBottom: '15px'}}>
                             Select shipping date:
                         </div>
                         <Grid container style={styles.datePickBox} alignItems={'center'}>
@@ -186,11 +185,16 @@ export default function ProductDetail() {
                             </MuiPickersUtilsProvider>
                         </Grid>
                         <div align="left" style={{marginTop: '20px'}}>
-                            <Button variant={'contained'} color={'primary'} align="left" style={{background: '#CCCCCC', height: '60px', width: '180px'}}>
+                            <Button 
+                                variant={'contained'} 
+                                color={'primary'} 
+                                align="left" 
+                                style={{background: '#CCCCCC', height: '60px', width: '180px'}}
+                                href={'/shoppingcart'}>
                                 Add to Cart
                             </Button>
                         </div>
-                        <div align="left" style={{marginTop: '20px'}}>
+                        <div align="left" style={{marginTop: '35px'}}>
                                 <div style={{...styles.duration, fontSize: '16px', fontWeight: 'normal'}}>
                                     <b>This Special Activity Box Contains:</b>
                                     <ul>
