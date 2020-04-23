@@ -7,6 +7,7 @@ import {BrowserRouter as Router,
 
 import Navbar from "../components/navbar"
 import HomePage from "./homePage"
+import ActivityDetail from "./activityDetail"
 import ActivityLibrary from "./activityLibrary"
 import AboutUs from "./aboutUs"
 import ContactUs from "./contactUs"
@@ -20,6 +21,10 @@ export default function PageLayout() {
                     <Route exact path="/activities">
                         <Navbar />
                         <ActivityLibrary />
+                    </Route>
+                    <Route exact path="/activities/:id">
+                        <Navbar />
+                        <ActivityDetail />
                     </Route>
                     <Route exact path="/aboutus">
                         <Navbar />
