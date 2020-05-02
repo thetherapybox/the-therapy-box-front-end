@@ -1,5 +1,7 @@
 import React from "react"
-
+import {Container, Grid, Typography} from "@material-ui/core"
+import ButtonJoin from "../components/homePage/buttonJoin";
+import ButtonBorrow from "../components/homePage/buttonBorrow";
 
 
 export default function HomePage() {
@@ -18,6 +20,59 @@ export default function HomePage() {
 
     Please put all the components in the "components/homePage/" folder.
     */
+    const styles = {
+        sectionContainer: {
+            background: "#F2F2F2",
+            padding: '30px',
+            minHeight: '500px',
+        },
+        sectionTitle: {
+            fontFamily: "Comfortaa",
+            fontWeight: "normal",
+            fontSize: "48px",
+            margin: "25px 20px 25px 20px",
+            color: "#434343",
+        },
+        sectionSubtitle: {
+            fontFamily: "Helvetica Neue",
+            fontWeight: "normal",
+            fontStyle: "normal",
+            fontSize: "21px",
+            lineHeight: "25px",
+            width: "574px",
+            height: "60px",
+            alignItems: "center",
+            textAlign: "center",
+            marginRight: "auto",
+            marginLeft: "auto",
+            marginTop: "25px",
+            marginBottom: "30px",
+            color: "#434343",
+        },
+    }
+    return (
+        <>
+            <div style={styles.sectionContainer}>
+                <Container>
+                    <Typography
+                        style={styles.sectionTitle}
+                    >NZ’s first online Activity Library</Typography>
+                    <Typography
+                        style={styles.sectionSubtitle}
+                    >
+                        Delivering quality recreational and diversional Activity Boxes to care facilities all over New Zealand.
+                    </Typography>
+                    <Grid container spacing={10} alignItems={'center'} justify={'center'}>
+                        <Grid item >
+                            <ButtonJoin/>
+                        </Grid>
+                        <Grid item >
+                            <ButtonBorrow/>
+                        </Grid>
+                    </Grid>
 
-    return (<div>Homepage</div>)
+                </Container>
+            </div>
+        </>
+    )
 }
