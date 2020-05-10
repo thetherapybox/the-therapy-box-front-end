@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from "react"
+import {useSelector} from "react-redux"
+
 import {Button, Card, CardContent, CardMedia, Container, Grid, TextField, Typography} from "@material-ui/core"
 import {Pagination} from "@material-ui/lab"
 
@@ -9,85 +11,13 @@ import SearchIcon from '@material-ui/icons/Search'
     Feed this dummy data in, and we will hook it up to the actual data later.
     
 */
-const EXAMPLE_DATA = [
-        {
-            img: "http://placekitten.com/g/328/194",
-            activityBoxID: 1,
-            title: "A Kitten Tour Of New Zealand",
-            subTitle: "A Very Special Cativity Box",
-            tags: [
-                "cat",
-                "kitten"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/656/388",
-            activityBoxID: 2,
-            title: "A Meowly Tour Of New Zealand",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "meow",
-                "cat"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/500/300",
-            activityBoxID: 3,
-            title: "A Dance Of Kittens",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "purr",
-                "meow"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/500/300",
-            activityBoxID: 4,
-            title: "Game of Kittens",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "purr",
-                "meow"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/328/194",
-            activityBoxID: 5,
-            title: "The Winds of Kittens",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "purr",
-                "meow"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/656/388",
-            activityBoxID: 6,
-            title: "Kittens & Dragons",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "purr",
-                "meow"
-            ]
-        },
-        {
-            img: "http://placekitten.com/g/656/388",
-            activityBoxID: 7,
-            title: "Kittens Unlimited",
-            subTitle: "A Very Unique Cativity Box",
-            tags: [
-                "purr",
-                "meow"
-            ]
-        }
-    ]
-
 
 export default function ActivityLibrary() {
 
-    const [products, setProducts] = useState(undefined)
+    const products = useSelector(state => state.activityboxes)
+
     const [searchFilter, setSearchFilter] = useState('')
-    const [numOfPages, setNumOfPages] = useState(Math.ceil(EXAMPLE_DATA.length / 6))
+    const [numOfPages, setNumOfPages] = useState(Math.ceil(products.length / 6))
     const [page, setPage] = useState(1)
 
     const styles = {
@@ -122,11 +52,6 @@ export default function ActivityLibrary() {
             color: "#434343",
         }
     }
-
-    useEffect(() => {
-        // This is where the fetch to the Strapi API will go, until then, dummy data!
-        setProducts(EXAMPLE_DATA)
-    }, [])
 
     const filteredProducts = products && products.filter(activity => activity.title.toLowerCase().includes(searchFilter.toLowerCase())
                     || activity.subTitle.toLowerCase().includes(searchFilter.toLowerCase()))
@@ -182,11 +107,11 @@ export default function ActivityLibrary() {
                                 >
                                     <Card style={{padding: '0px !important', margin: '0px'}}>
                                         <CardMedia>
-                                            <img src={activity.img} alt={activity.title} style={{objectFit: 'cover', width: '100%'}}/>
+                                            <img src={activity.photos[0].url} alt={activity.title} style={{objectFit: 'cover', width: '100%'}}/>
                                         </CardMedia>
                                         <CardContent>
                                             <Typography align={'left'} style={styles.activityBoxID}>
-                                                Activity Box #{activity.activityBoxID}
+                                                Activity Box #{activity.id.slice(activity.id.length-6)}
                                             </Typography>
                                             <Typography align={'left'} variant={'h6'} style={styles.title}>
                                                 {activity.title}
@@ -206,7 +131,7 @@ export default function ActivityLibrary() {
                                                                 <span
                                                                     style={{textTransform: 'uppercase',
                                                                             color: '#C80ACA'}}
-                                                                >{tag}{idx !== activity.tags.length - 1? <span style={{color: 'black'}}>, </span>: ''}</span>
+                                                                >{tag.name}{idx !== activity.tags.length - 1? <span style={{color: 'black'}}>, </span>: ''}</span>
                                                             )
                                                         })}
                                                     </Typography>
@@ -216,7 +141,7 @@ export default function ActivityLibrary() {
                                                     <Button
                                                         style={{color: "#C80ACA", border: "#C80ACA solid 1px", textTransform: "none"}}
                                                         variant={'outlined'}
-                                                        onClick={ev => window.location.href = `/activities/${activity.activityBoxID}`}
+                                                        onClick={ev => window.location.href = `/activities/${activity.id}`}
                                                     >Explore</Button>
                                                 </Grid>
                                             </Grid>
