@@ -1,12 +1,15 @@
-import React from "react"
-import {Container, Grid, Typography} from "@material-ui/core"
+import React from "react";
+import { Container, Grid, Typography } from "@material-ui/core";
 import ButtonJoin from "../components/homePage/buttonJoin";
 import ButtonBorrow from "../components/homePage/buttonBorrow";
-
+import { useSelector } from "react-redux";
 
 export default function HomePage() {
+  const homepage = useSelector((state) => state.homepage);
+  const test = homepage.Homepage_sections && homepage.Homepage_sections;
+  console.log(test);
 
-    /* 
+  /* 
     Design:
     https://www.figma.com/proto/IQSLstsDcsIhljMamKyJnJ/TherapyBox?node-id=970%3A853&scaling=min-zoom
     
@@ -20,59 +23,59 @@ export default function HomePage() {
 
     Please put all the components in the "components/homePage/" folder.
     */
-    const styles = {
-        sectionContainer: {
-            background: "#F2F2F2",
-            padding: '30px',
-            minHeight: '500px',
-        },
-        sectionTitle: {
-            fontFamily: "Comfortaa",
-            fontWeight: "normal",
-            fontSize: "48px",
-            margin: "25px 20px 25px 20px",
-            color: "#434343",
-        },
-        sectionSubtitle: {
-            fontFamily: "Helvetica Neue",
-            fontWeight: "normal",
-            fontStyle: "normal",
-            fontSize: "21px",
-            lineHeight: "25px",
-            width: "574px",
-            height: "60px",
-            alignItems: "center",
-            textAlign: "center",
-            marginRight: "auto",
-            marginLeft: "auto",
-            marginTop: "25px",
-            marginBottom: "30px",
-            color: "#434343",
-        },
-    }
-    return (
-        <>
-            <div style={styles.sectionContainer}>
-                <Container>
-                    <Typography
-                        style={styles.sectionTitle}
-                    >NZ’s first online Activity Library</Typography>
-                    <Typography
-                        style={styles.sectionSubtitle}
-                    >
-                        Delivering quality recreational and diversional Activity Boxes to care facilities all over New Zealand.
-                    </Typography>
-                    <Grid container spacing={10} alignItems={'center'} justify={'center'}>
-                        <Grid item >
-                            <ButtonJoin/>
-                        </Grid>
-                        <Grid item >
-                            <ButtonBorrow/>
-                        </Grid>
-                    </Grid>
-
-                </Container>
+  const styles = {
+    sectionContainer: {
+      background: "#F2F2F2",
+      padding: "30px",
+      minHeight: "500px",
+    },
+    sectionTitle: {
+      fontFamily: "Comfortaa",
+      fontWeight: "normal",
+      fontSize: "48px",
+      margin: "25px 20px 25px 20px",
+      color: "#434343",
+    },
+    sectionSubtitle: {
+      fontFamily: "Helvetica Neue",
+      fontWeight: "normal",
+      fontStyle: "normal",
+      fontSize: "21px",
+      lineHeight: "25px",
+      width: "574px",
+      height: "60px",
+      alignItems: "center",
+      textAlign: "center",
+      marginRight: "auto",
+      marginLeft: "auto",
+      marginTop: "25px",
+      marginBottom: "30px",
+      color: "#43;4343",
+    },
+  };
+  return (
+    <>
+      {homepage.Homepage_sections &&
+        homepage.Homepage_sections.map((item) => {
+          return (
+            <div style={styles.sectionContainer} key={item.id}>
+              <Container>
+                <Typography style={styles.sectionTitle}>
+                  {item.title}
+                </Typography>
+                <Typography style={styles.sectionSubtitle}>
+                  {item.column[0].body}
+                </Typography>
+                <Grid
+                  container
+                  spacing={10}
+                  alignItems={"center"}
+                  justify={"center"}
+                ></Grid>
+              </Container>
             </div>
-        </>
-    )
+          );
+        })}
+    </>
+  );
 }
